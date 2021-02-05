@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import DashBoard from '@/views/DashBoard/index.vue'
 
 Vue.use(VueRouter)
 
@@ -10,7 +11,7 @@ const routes = [
   },
   {
     path: '/dashboard',
-    component: () => import('@/views/DashBoard/index.vue')
+    component: DashBoard
   }
 ]
 
