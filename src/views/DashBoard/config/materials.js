@@ -10,6 +10,13 @@ export default [
         type: 'array',
         attrType: 0,
         prop: 'images'
+      },
+      {
+        label: '跳转链接',
+        value: [''],
+        type: 'array',
+        attrType: 0,
+        prop: 'links'
       }
     ]
   },
@@ -59,5 +66,21 @@ export default [
     icon: 'replay',
     label: '加载',
     name: 'van-loading'
+  },
+  {
+    icon: 'coupon-o',
+    label: '列表',
+    name: 'my-list',
+    attrs: [
+      {
+        label: '数据来源',
+        value: '',
+        type: 'string',
+        attrType: 0,
+        prop: 'list',
+        get: true,
+        placeholder: '如 /list'
+      }
+    ]
   }
 ]

@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="head-area">
-      <van-button type="info" size="mini" style="margin-right: 10px">预览</van-button>
+      <van-button type="info" size="mini" style="margin-right: 10px" @click="preview">预览</van-button>
       <van-button type="info" size="mini">保存</van-button>
     </div>
 
@@ -22,6 +22,8 @@
         <right-area></right-area>
       </section>
     </div>
+
+    <pre-view-dialog :show.sync='show'></pre-view-dialog>
   </div>
 </template>
 
@@ -30,17 +32,25 @@ import LeftArea from './components/LeftArea'
 import LeftAreaAdd from './components/LeftAreaAdd'
 import MiddleArea from './components/MiddleArea'
 import RightArea from './components/RightArea'
+import PreViewDialog from './components/PreViewDialog'
 
 export default {
   components: {
     LeftArea,
     LeftAreaAdd,
     MiddleArea,
-    RightArea
+    RightArea,
+    PreViewDialog
   },
   data () {
     return {
-      active: -1
+      active: -1,
+      show: false
+    }
+  },
+  methods: {
+    preview () {
+      this.show = true
     }
   }
 }

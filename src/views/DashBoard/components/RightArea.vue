@@ -22,7 +22,7 @@
           <van-button style="margin-left: 10px; transform: translateY(-5px)" type="info" size='mini' @click="handleAdd(item)">添加</van-button>
         </span>
         <span class="value" v-if="item.type === 'string'">
-          <van-field v-model="item.value" placeholder="请输入" />
+          <van-field v-model="item.value" :placeholder="item.placeholder || '请输入'" />
         </span>
         <span class="value" v-if="item.type === 'number'">
           <van-field v-model="item.value" placeholder="请输入数字" oninput="value=value.replace(/[^\d]/g,'')"/>

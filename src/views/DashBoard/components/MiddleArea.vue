@@ -7,6 +7,7 @@
             v-for="(item, index) in materials"
             :key="index + item.name"
             @click.stop="activeItem(item, index)"
+            @contextmenu.prevent="onContextmenu(item, index)"
             :class="{'active' : selected === index, 'item': true}">
             <component :is="item.name" :attrs="item.attrs"></component>
           </div>
@@ -30,6 +31,42 @@ export default {
     }
   },
   methods: {
+    onContextmenu (item, index) {
+      const obj = {
+        onTop: (index) => {
+          const item = this.materials.splice(index, 1)[0]
+          this.materials.unshift(item)
+        },
+        onBack: (index) => {
+          const item = this.materials.splice(index, 1)[0]
+          this.materials.push(item)
+        },
+        onDelete: (index) => {
+          this.materials.splice(index, 1)
+        }
+      }
+      this.$contextmenu({
+        items: [
+          {
+            label: '置顶',
+            onClick: () => obj.onTop(index)
+          },
+          {
+            label: '置后',
+            onClick: () => obj.onBack(index)
+          },
+          {
+            label: '删除',
+            onClick: () => obj.onDelete(index)
+          }
+        ],
+        event,
+        customClass: 'class-a',
+        minWidth: 230,
+        zIndex: 9999
+      })
+      return false
+    },
     activeItem (item, index) {
       this.selected = index
       this.$EventBus.$emit('selectedMeterial', item)
